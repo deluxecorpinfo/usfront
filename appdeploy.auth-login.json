@@ -1,0 +1,13 @@
+{
+  "headline": "Enter Universal School",
+  "subtitle": "One identity for learning, teaching and creating.",
+  "style": {
+    "mode": "light",
+    "accentColor": "#006039",
+    "backgroundColor": "#F2F5F2",
+    "panelColor": "#FFFFFF",
+    "textColor": "#132018",
+    "fontFamily": "Inter, system-ui, sans-serif",
+    "borderRadius": 18
+  }
+}
