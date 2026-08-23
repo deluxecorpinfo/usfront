@@ -1,0 +1,67 @@
+# Tests
+
+## Test 1 - Create a learner profile and personalized Explore [sanity]
+Viewport: mobile
+Covers: staged premium branded entry, authentication, learner role onboarding, custom interests, two-minute voice biography UI, profile database create/read, personalized Explore API
+Description: Verifies a new signed-in user can create a learner profile and reach a personalized feed.
+
+Steps:
+1. Continue from the branded entry and sign in
+2. Choose Student, select Artificial Intelligence, add "Nanotechnology" as a custom interest, enter "Chemical engineering" as study field, choose a level, enter "I want to learn AI, engineering and space technology" as the biography, then finish onboarding
+3. Refresh the app
+
+Expected: The profile remains complete after refresh and Explore shows personalized learning cards.
+
+## Test 2 - Create an organization educator and switch into learner mode
+Viewport: desktop
+Covers: educator role, organization subtype, profile persistence, educator-to-learner view-mode switch, desktop responsive layout
+Description: Verifies an educator organization uses one identity while retaining access to the learner experience.
+
+Steps:
+1. Sign in as a new user, choose Educator, choose Organization and University
+2. Select Physics, enter "Physics" as study field, add a biography, and complete onboarding
+3. Use the Teach/Learn switch to change to Learn
+
+Expected: The same account remains signed in and the interface changes from the educator dashboard to the personalized learning feed without horizontal overflow.
+
+## Test 3 - Block incomplete interest onboarding and accept a custom interest
+Viewport: mobile
+Covers: onboarding validation, custom interests, invalid-write guardrail
+Description: Verifies the profile cannot advance without a discovery signal and that a typed custom interest is reliably added and visibly confirmed on mobile.
+
+Steps:
+1. Sign in as a new user, choose Student, continue, leave all interests unselected and press Continue
+2. Verify the validation message, enter "Nanotechnology" in the custom-interest field, press Add, and confirm a visible Nanotechnology chip appears under Added interests
+3. Press Continue again
+
+Expected: The first attempt is blocked; Add clears the input and shows Nanotechnology as a selected chip; then the learning-context step opens.
+
+## Test 4 - Preview profiles, Books, Podcast and the safe review tour
+Viewport: desktop
+Covers: Learner profile, RAVI profile media tabs, Podcast naming, separate PDFs and Books, Organization profile and student access UI, identity switching, review tour hash entry, authenticated profile API, sign-out, protected data boundary
+Description: Verifies the profile architecture separates content types clearly and the review tour can replay the approved UI direction without changing account data.
+
+Setup:
+1. Complete any valid learner profile while signed in
+
+Steps:
+1. Open Profile, switch to RAVI, verify the fixed-height horizontal tab order Videos, Podcast, Text, Courses, PDFs and Books; open Courses, then Books and verify authored/reference books with a Buy / View action
+2. Switch to Organization and verify the Student ID or access code field, then open the same app with #tour and move from Intro through Profiles before exiting the tour
+3. Return to Profile, sign out, verify the public sign-in screen is shown and reload the app
+
+Expected: RAVI exposes six distinct content types with Courses fourth, Books separate from PDFs, and the tab rail stays one row while swiping horizontally; Organization exposes student access; the review tour starts from the approved reference-style Intro without erasing the signed-in profile; after sign-out private profile data is not rendered.
+
+## Test 5 - Explore all four Room architectures
+Viewport: mobile
+Covers: Rooms hub, Campus detail, Academy detail, School detail, Workshop detail, Universal Score breakdown, Room back navigation
+Description: Verifies the new Rooms experience exposes four distinct learning architectures and their core product concepts.
+
+Setup:
+1. Complete any valid learner profile while signed in
+
+Steps:
+1. Open Rooms and verify Campus, Academy, School and Workshop cards are visible
+2. Open Campus, expand a Universal Score, return to All Rooms, then open Academy and School
+3. Return to All Rooms, open Workshop and verify the project board and Universal AI co-pilot are visible
+
+Expected: Each Room opens a distinct detail interface; Campus exposes curriculum and score detail, Academy exposes governed membership, School exposes a personalized learning map, and Workshop exposes collaboration plus the AI co-pilot.
